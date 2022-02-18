@@ -469,7 +469,11 @@ span {
   color: initial;
 }
 
-@media only screen and (max-width: 768px) {
+.menu .close_menu{
+  display: none;
+}
+
+@media only screen and (max-width: 590px) {
   body {
     overflow: initial;
   }
@@ -515,10 +519,13 @@ span {
   }
 
   .card_prev {
+  
     position: relative;
     margin-bottom: 2rem;
   }
 
+  
+  
   .card_prev .next,
   .card_prev .previous {
     width: 40px;
@@ -582,20 +589,90 @@ span {
     display: flex;
   }
 
+  .menu {
+    position: absolute;
+    z-index: 10;
+    top: 1rem;
+    left: -20rem;
+    display: flex;
+    background-color: #fff;
+    width: 70%;
+    height: 100vh;
+    flex-direction: column;
+    text-align: left;
+    transition: .3s;
+    display: none;
+  }
+
+  .menu_open{
+    left: -3rem;
+    display: block;
+  }
+
+  .menu ul {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 3rem;
+    height: 35%;
+  }
+
+  .menu ul li {
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 700;
+    width: 50%;
+  }
+
+  .menu .close_menu {
+    display: block;
+    width: 25px;
+    margin-left: 2rem;
+  }
+
   footer p {
     font-size: 0.8rem;
   }
 
   .modal {
+    display: initial;
+    z-index: 9;
+    transition: .3s;
+  }
+
+  .modal .cards{
     display: none;
   }
 
   .cartOpenOn {
     z-index: 100;
-    height: 49%;
+    height: 38%;
     width: 95%;
     right: 3%;
     top: 16%;
     box-shadow: initial;
+  }
+
+  .cartOpenOn .headerCart {
+    padding: 2rem;
+  }
+
+  .cartOpenOn .headerCart h2 {
+    font-size: 1.2rem;
+  }
+
+  .cartOpenOn button {
+    padding: 1.2rem;
+    border-radius: 13px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .cartOpenOn .delete {
+    width: 20px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 }
