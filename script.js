@@ -1,51 +1,57 @@
-const addCart = document.querySelector("#add");
-const rmvCart = document.querySelector("#rmv");
-const dispay = document.querySelector("#display");
-let item = 0;
-const cards = document.querySelector(".cards_down");
-let indexImg = 0;
-let modal = document.querySelector(".modal");
-const wind = window.window;
-const divCard = document.querySelector(".cards");
+let indexImg;
+let imgPrev = document.querySelector(".imgPrev");
 const next = document.querySelector(".next");
 const previous = document.querySelector(".previous");
-const imgPrev = document.querySelector(".imgPrev");
-let prev = document.querySelector(".card_prev");
-let close = document.querySelector(".close");
-const bntAdd = document.querySelector(".addCart");
-const itemThisCart = document.querySelector(".cartItem");
-const empety = document.querySelector(".prod");
-const def = document.querySelector(".default");
-const del = document.querySelector(".delete");
-const cart = document.querySelector(".cart");
-const closeCart = document.querySelector(".openCart");
-const times = document.querySelector(".times");
-const total = document.querySelector(".total");
-let calcTot;
-const mobileMenu = document.querySelector(".mobile_menu");
-const menu = document.querySelector(".menu");
-const buttonX = document.querySelector(".close_menu");
 
-dispay.innerHTML = item;
-addCart.addEventListener("click", addItemCart);
-rmvCart.addEventListener("click", rmvItemCart);
-bntAdd.addEventListener("click", addToCard);
-del.addEventListener("click", delCart);
-cart.addEventListener("click", opentCart);
-mobileMenu.addEventListener("click", openMenuMobile);
-buttonX.addEventListener("click", closeMenu);
 
-function addItemCart() {
-  item++;
+
+setInterval(function () {
+  const addCart = document.querySelector("#add");
+  const rmvCart = document.querySelector("#rmv");
+  const dispay = document.querySelector("#display");
+  let item = 0;
+  const cards = document.querySelector(".cards_down");
+  let modal = document.querySelector(".modal");
+  const wind = window.window;
+  const divCard = document.querySelector(".cards");
+
+  let imgPrev = document.querySelector(".imgPrev");
+  let prev = document.querySelector(".card_prev");
+  let close = document.querySelector(".close");
+  const bntAdd = document.querySelector(".addCart");
+  const itemThisCart = document.querySelector(".cartItem");
+  const empety = document.querySelector(".prod");
+  const def = document.querySelector(".default");
+  const del = document.querySelector(".delete");
+  const cart = document.querySelector(".cart");
+  const closeCart = document.querySelector(".openCart");
+  const times = document.querySelector(".times");
+  const total = document.querySelector(".total");
+  let calcTot;
+  const mobileMenu = document.querySelector(".mobile_menu");
+  const menu = document.querySelector(".menu");
+  const buttonX = document.querySelector(".close_menu");
+
   dispay.innerHTML = item;
-}
-function rmvItemCart() {
-  if (item !== 0) {
-    item--;
+  addCart.addEventListener("click", addItemCart);
+  rmvCart.addEventListener("click", rmvItemCart);
+  bntAdd.addEventListener("click", addToCard);
+  del.addEventListener("click", delCart);
+  cart.addEventListener("click", opentCart);
+  mobileMenu.addEventListener("click", openMenuMobile);
+  buttonX.addEventListener("click", closeMenu);
+
+  function addItemCart() {
+    item++;
+    dispay.innerHTML = item;
   }
-  dispay.innerHTML = item;
-}
- setInterval(function () {
+  function rmvItemCart() {
+    if (item !== 0) {
+      item--;
+    }
+    dispay.innerHTML = item;
+  }
+  //  setInterval(function () {
   close.addEventListener("click", closeModal);
   prev.addEventListener("click", addModal);
   cards.addEventListener("click", selectCards);
@@ -102,25 +108,70 @@ function rmvItemCart() {
       closeCart.classList.remove("cartOpenOn");
     }
 
-    console.log(closeCart.classList)
-    // if (
-    //   target.classList[0] !== "imgPrev" &&
-    //   target.classList[1] !== "activeCard"
-    // ) {
-    //   modal.classList.remove("open");
-    //   close.classList.add("none");
-    //   modal.classList.add("none");
-    //   modal.innerHTML = "";
-    // }
+   
+    if (
+      target.classList[0] !== "imgPrev" &&
+      target.classList[1] !== "activeCard"
+    ) {
+      modal.classList.remove("open");
+      close.classList.add("none");
+      modal.classList.add("none");
+      modal.innerHTML = "";
+    }
   }
- }, 1000);
+  //  }, 1000);
 
-function nextImg() {
-  if (screen.width <= 580) {
-    if (indexImg < 3) {
-      indexImg = ++indexImg;
+  function addToCard() {
+    if (item === 0) {
+      itemThisCart.classList.add("none");
+      empety.classList.add("none");
+      def.classList.remove("none");
+    } else {
+      itemThisCart.classList.remove("none");
+      itemThisCart.innerHTML = item;
+      empety.classList.remove("none");
+      def.classList.add("none");
     }
 
+    times.innerHTML = item;
+    calcTot = 125.0 * item;
+
+    total.innerHTML = ` $${calcTot}.00`;
+  }
+
+  function delCart() {
+    empety.classList.add("none");
+    def.classList.remove("none");
+    itemThisCart.classList.add("none");
+    item = 0;
+    itemThisCart.innerHTML = item;
+    dispay.innerHTML = item;
+  }
+
+  function opentCart() {
+    closeCart.classList.toggle("cartOpenOn");
+  }
+
+  function openMenuMobile() {
+    menu.classList.add("menu_open");
+    modal.classList.add("open");
+  }
+
+  function closeMenu() {
+    menu.classList.remove("menu_open");
+    modal.classList.remove("open");
+  }
+}, 1000);
+
+if(screen.width > 768){
+  indexImg = null;
+}
+
+function nextImg() {
+  if(screen.width < 768){
+  if (indexImg < 3) {
+    indexImg = ++indexImg;
+  }
     setInterval(() => {
       if (indexImg === 0) {
         imgPrev.src = "./images/image-product-1.jpg";
@@ -139,45 +190,4 @@ function previousImg() {
   if (indexImg !== 0) {
     indexImg = indexImg - 1;
   }
-}
-
-function addToCard() {
-  if (item === 0) {
-    itemThisCart.classList.add("none");
-    empety.classList.add("none");
-    def.classList.remove("none");
-  } else {
-    itemThisCart.classList.remove("none");
-    itemThisCart.innerHTML = item;
-    empety.classList.remove("none");
-    def.classList.add("none");
-  }
-
-  times.innerHTML = item;
-  calcTot = 125.0 * item;
-
-  total.innerHTML = ` $${calcTot}.00`;
-}
-
-function delCart() {
-  empety.classList.add("none");
-  def.classList.remove("none");
-  itemThisCart.classList.add("none");
-  item = 0;
-  itemThisCart.innerHTML = item;
-  dispay.innerHTML = item;
-}
-
-function opentCart() {
-  closeCart.classList.toggle("cartOpenOn");
-}
-
-function openMenuMobile() {
-  menu.classList.add("menu_open");
-  modal.classList.add("open");
-}
-
-function closeMenu() {
-  menu.classList.remove("menu_open");
-  modal.classList.remove("open");
 }
