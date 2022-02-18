@@ -13,11 +13,11 @@ const empety = document.querySelector(".prod");
 const def = document.querySelector(".default");
 const del = document.querySelector(".delete");
 const cart = document.querySelector(".cart");
-const closeCart = document.querySelector(".openCart")
+const closeCart = document.querySelector(".openCart");
 
 bntAdd.addEventListener("click", addToCard);
-del.addEventListener('click', delCart);
-cart.addEventListener('click', opentCart);
+del.addEventListener("click", delCart);
+cart.addEventListener("click", opentCart);
 
 const times = document.querySelector(".times");
 const total = document.querySelector(".total");
@@ -35,8 +35,8 @@ function rmvItemCart() {
 }
 setInterval(function () {
   const cards = document.querySelector(".cards_down");
-  cards.addEventListener("click", selectCards);
 
+  const wind = window.window;
   const divCard = document.querySelector(".cards");
 
   let modal = document.querySelector(".modal");
@@ -45,6 +45,8 @@ setInterval(function () {
 
   close.addEventListener("click", closeModal);
   prev.addEventListener("click", addModal);
+  cards.addEventListener("click", selectCards);
+  wind.addEventListener("click", closeAll);
 
   function selectCards(e) {
     let card = e.target;
@@ -81,11 +83,28 @@ setInterval(function () {
   }
 
   function closeModal() {
-    console.log("rafa");
     modal.classList.remove("open");
     close.classList.add("none");
     modal.classList.add("none");
     modal.innerHTML = "";
+  }
+
+  function closeAll({ target }) {
+    if (
+      target.classList[0] !== "cart_icon" &&
+      target.classList[0] !== "delete_icon"
+    ) {
+      closeCart.classList.remove("cartOpenOn");
+    }
+    if (
+      target.classList[0] !== "imgPrev" &&
+      target.classList[1] !== "activeCard"
+    ) {
+      modal.classList.remove("open");
+      close.classList.add("none");
+      modal.classList.add("none");
+      modal.innerHTML = "";
+    }
   }
 }, 1000);
 
@@ -93,30 +112,29 @@ function addToCard() {
   if (item === 0) {
     itemThisCart.classList.add("none");
     empety.classList.add("none");
-    def.classList.remove("none")
+    def.classList.remove("none");
   } else {
     itemThisCart.classList.remove("none");
     itemThisCart.innerHTML = item;
     empety.classList.remove("none");
-    def.classList.add("none")
+    def.classList.add("none");
   }
 
-  times.innerHTML = item
-  calcTot = 125.00 * item;
+  times.innerHTML = item;
+  calcTot = 125.0 * item;
 
-  total.innerHTML = ` $${calcTot}.00`
+  total.innerHTML = ` $${calcTot}.00`;
 }
 
-function delCart(){
+function delCart() {
   empety.classList.add("none");
   def.classList.remove("none");
   itemThisCart.classList.add("none");
-  
   item = 0;
   itemThisCart.innerHTML = item;
-  dispay.innerHTML = item
+  dispay.innerHTML = item;
 }
 
-function opentCart(){
+function opentCart() {
   closeCart.classList.toggle("cartOpenOn");
 }
