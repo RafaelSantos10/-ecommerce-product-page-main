@@ -15,6 +15,7 @@ rmvCart.addEventListener("click", rmvItemCart);
 function addItemCart() {
   item++;
   dispay.innerHTML = item;
+ 
 }
 function rmvItemCart() {
   if (item !== 0) {

@@ -24,7 +24,7 @@ body {
   width: 80%;
   height: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: -.8rem auto;
 }
 
 header {
@@ -473,6 +473,21 @@ span {
   display: none;
 }
 
+@media (max-width:768px) {
+  nav.menu{
+    margin-left: -0.8rem;
+  }
+
+  section.cards{
+    margin-right: 12%;
+  }
+
+  .cards .cards_down{
+    width: 180%;
+  }
+}
+
+
 @media only screen and (max-width: 590px) {
   body {
     overflow: initial;
@@ -482,6 +497,10 @@ span {
     width: 90%;
     padding: 10px;
   }
+
+.cont_infos{
+  margin-top: -4rem;
+}
 
   header {
     margin: 0;
@@ -627,7 +646,8 @@ span {
   .menu .close_menu {
     display: block;
     width: 25px;
-    margin-left: 2rem;
+    margin-top: 0.8rem;
+    margin-left: 4.6rem;
   }
 
   footer p {
@@ -662,10 +682,12 @@ span {
   }
 
   .cartOpenOn button {
-    padding: 1.2rem;
+    padding: 1rem;
     border-radius: 13px;
     font-size: 1rem;
+    margin-top: 1px;
     letter-spacing: 1px;
+
   }
 
   .cartOpenOn .delete {
@@ -675,4 +697,18 @@ span {
     flex-direction: column;
     justify-content: flex-end;
   }
+
+  nav.menu{
+    margin-left: 2%;
+  }
+
+  section.cards{
+    margin-right: 0%;
+  }
+
+  .cards .cards_down{
+    width: 180%;
+  }
 }
+
+
