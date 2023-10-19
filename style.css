@@ -210,6 +210,7 @@ main {
 .open {
   position: absolute;
   width: 100vw;
+  top: 0;
   height: 117vh;
   display: flex;
   align-items: center;
@@ -247,6 +248,7 @@ main {
   display: block;
   right: 9px;
 }
+
 
 .none {
   display: none;
@@ -398,10 +400,15 @@ footer a {
   display: none;
   flex-direction: column;
   text-align: center;
+  
 }
 
+.cartAlignItems{
+  margin-top: -15px;
+}
 .cartOpenOn {
   display: flex;
+ 
 }
 
 .openCart .default p {
@@ -476,6 +483,10 @@ span {
 @media (max-width:768px) {
   nav.menu{
     margin-left: -0.8rem;
+  }
+
+  .cartAlignItems{
+    margin-top: 25px;
   }
 
   section.cards{
